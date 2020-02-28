@@ -1,0 +1,85 @@
+\documentclass{article}%book,report,letter
+\usepackage{ctex}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+
+\begin{document}
+	\section{sde解的存在唯一性}给定T令$b(\cdot, \cdot):[0, T] \times \mathbf{R}^{n} \rightarrow \mathbf{R}^{n}, \sigma(\cdot, \cdot):[0, T] \times \mathbf{R}^{n} \rightarrow \mathbf{R}^{n \times m}$是可测函数满足
+		\begin{equation}
+		|b(t, x)|+|\sigma(t, x)| \leq C(1+|x|) ; \quad x \in \mathbf{R}^{n}, \quad t \in[0, T]
+		\end{equation}
+		\begin{equation}
+		|b(t, x)-b(t, y)|+|\sigma(t, x)-\sigma(t, y)| \leq D|x-y| ; \quad x, y \in \mathbf{R}^{n}, t \in[0, T]
+		\end{equation}
+		令Z是与$\mathcal{F}_{+\infty}$独立的随机变量，这里$\mathcal{F}_{+\infty}$是由$B_s(\cdot),s\geq0$，
+		且Z满足$E[|Z|^2]<\infty$则随机微分方程
+		\begin{equation}
+		dX_t=b(t,X_t)dt+\sigma(t,X_t)dB_t,   0\leq t\leq T,X_0=Z
+		\end{equation}
+		存在唯一连续解$X_t(\omega)$满足以下性质：\\
+		$X_t(\omega)$关于$\mathcal{F}^Z_t$是适应的而且
+		\begin{equation}
+		E\left[\int_{0}^{T}\left|X_{t}\right|^{2} d t\right]<\infty
+		\end{equation}
+		\subsection{唯一性}
+		这里的唯一性是指满足上述条件的连续解是唯一的，接下来用到$ito$等距公式，$C-S$不等式证明唯一性，不妨设$X_t(\omega)$是方程关于Z的解，$\widehat{X}_t(\omega)$是方程关于$\widehat{Z}$的解令$a(s, \omega)=b\left(s, X_{s}\right)-b\left(s, \hat{X}_{s}\right)$ $\gamma(s, \omega)=\sigma\left(s, X_{s}\right)-\sigma\left(s, \widehat{X}_{s}\right)$则
+		\begin{equation}
+		\begin{array}{l}
+		E\left[\left|X_{t}-\widehat{X}_{t}\right|^{2}\right]=E\left[\left(Z-\widehat{Z}+\int_{0}^{t} \operatorname{ads}+\int_{0}^{t} \gamma d B_{s}\right)^{2}\right] \\
+		\quad \leq 3 E\left[|Z-\widehat{Z}|^{2}\right]+3 E\left[\left(\int_{0}^{t} \text { ads }\right)^{2}\right]+3 E\left[\left(\int_{0}^{t} \gamma d B_{s}\right)^{2}\right] \\
+		\quad \leq 3 E\left[|Z-\widehat{Z}|^{2}\right]+3 t E\left[\int_{0}^{t} a^{2} d s\right]+3 E\left[\int_{0}^{t} \gamma^{2} d s\right] \\
+		\quad \leq 3 E\left[|Z-\widehat{Z}|^{2}\right]+3(1+t) D^{2} \int_{0}^{t} E\left[\left|X_{s}-\hat{X}_{s}\right|^{2}\right] d s
+		\end{array}
+		\end{equation}
+		令
+		$$
+		v(t)=E\left[\left|X_{t}-\hat{X}_{t}\right|^{2}\right] ; \quad 0 \leq t \leq T
+		$$
+		则上式满足
+		\begin{equation}
+		\begin{aligned}
+		v(t) & \leq F+A \int_{0}^{t} v(s) d s \\
+		&  F=3 E\left[|Z-\widehat{Z}|^{2}\right] ,A=3(1+T) D^{2}
+		\end{aligned}
+		\end{equation}
+		根据Gronwall不等式得
+		$v(t)\leq exp(At)$
+		现在假设$Z=\widehat{Z}$则F=0所以$v(t)=0$所以
+		$$
+		P\left[\left|X_{t}-\hat{X}_{t}\right|=0 \quad \text { for all } t \in \mathbf{Q} \cap[0, T]\right]=1
+		$$
+		由$|X_t-\widehat{X}|$的连续性知，sde的解是唯一的
+		\subsection{存在性}
+		利用不动点定理证明设$\Phi:(M^2)^d\rightarrow(M^2)^d$
+		$$\forall U\in (M^2)^d,\Phi(U)_t=X+\int_{0}^{t}f(s,U_s)ds+\int_{0}^{t}g(s,U_s)dB_s$$
+		由(1)(2)知$\Phi(U)\in (M^2)^d$，定义范数$\|U\|_{\beta}=\left(E \int_{0}^{T} e^{-\beta t}\left|X_{t}\right|^{2} d t\right)^{1 / 2}$显然它与$(M^2)^d$的原范数等价下证存在$\beta$
+		使得$\Phi$为严格压缩映射，设$U,U'\in(M^2)^d$记
+		$$
+		\bar{U}=U-U^{\prime}, \bar{f}_{t}=f\left(t, U_{t}\right)-f\left(t, U_{t}^{\prime}\right), \bar{g}_{t}=g\left(t, U_{t}\right)-g\left(t, U_{t}^{\prime}\right), \bar{\Phi}_{t}=\Phi(U)_{t}-\Phi\left(U^{\prime}\right)_{t}
+		$$
+		对$\forall \beta \in \mathbb{R}$，对$e^{-\beta t}$|\bar{\Phi_T}|^2$在$[0,T]$上利用ito公式得
+$$
+\begin{equation}
+& e^{-\beta T}\left|\bar{\Phi}_{T}\right|^{2}+\beta \int_{0}^{T} e^{-\beta t}\left|\bar{\Phi}_{t}\right|^{2} d t \\
+=& 2 \int_{0}^{T} e^{-\beta t}\left\langle\bar{\Phi}_{t}, \bar{f}_{t}\right\rangle d t+2 \int_{0}^{T} e^{-\beta t}\left\langle\bar{\Phi}_{t}, \bar{g}_{t} d B_{t}\right\rangle+\int_{0}^{T} e^{-\beta t} \operatorname{Tr}\left[\bar{g}_{t} \bar{g}_{t}^{*}\right] d t
+\end{eqyation}
+$$
+对上式两边取期望
+$$
+\beta E \int_{0}^{T} e^{-\beta t}\left|\bar{\Phi}_{t}\right|^{2} d t \leqslant 2 E \int_{0}^{T} e^{-\beta t}\left\langle\bar{\Phi}_{t}, \bar{f}_{t}\right\rangle d t+E \int_{0}^{T} e^{-\beta t} \operatorname{Tr}\left[\bar{g}_{t} \bar{g}_{t}^{*}\right] d t
+$$
+然后利用(2)
+$$
+\beta E \int_{0}^{T} e^{-\beta t}\left|\bar{\Phi}_{t}\right|^{2} d t \leqslant E \int_{0}^{T} e^{-\beta t}\left|\bar{\Psi}_{t}\right|^{2} d t+K^{2} E \int_{0}^{T} e^{-\beta t}\left|\bar{U}_{t}\right|^{2} d t+K^{2} E \int_{0}^{T} e^{-\beta t}\left|\bar{U}_{t}\right|^{2} d t
+$$
+当$\beta=1+4K^2$时，便有
+$$
+E \int_{0}^{T} e^{-\beta t}\left|\bar{\Phi}_{t}\right|^{2} d t \leqslant \frac{1}{2} E \int_{0}^{T} e^{-\beta t}\left|\bar{U}_{t}\right|^{2} d t
+$$
+这样即证$\Phi$为严格的压缩映射
+		
+	
+	
+
+
+\end{document}
