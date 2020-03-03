@@ -98,14 +98,14 @@ $$
 为multi-indices，m表示Brown运动的m个分量$j_i$用于表示积分顺序$L^{j_i}$算子的作用顺序。$v$表示长度为0的multi-indices。
 \subsection{积分定义}
 以下$f$均为右连续适应的随机过程。令$\mathcal{H}_v$表示满足如下性质的$f$全体
-$$|f(t,\omega)|<\infty, w.p.1,for each t\geq 0$$
+$$|f(t,\omega)|<\infty, w.p.1,t\geq 0$$
 类似的$\mathcal{H}_0$表示满足如下性质的$f$全体
 $$
-\int_{0}^{t}|f(s, \omega)| d s<\infty,w.p.1,for each t\geq 0
+\int_{0}^{t}|f(s, \omega)| d s<\infty,w.p.1,t\geq 0
 $$
 $\mathcal{H}_1$表示满足如下性质的函数全体
 $$
-\int_{0}^{t}|f(s, \omega)|^2 d s<\infty,w.p.1,for each t\geq 0
+\int_{0}^{t}|f(s, \omega)|^2 d s<\infty,w.p.1,t\geq 0
 $$
 对于$j\geq2$,$\mathcal{H}_j=\mathcal{H}_1$，接下来定义$\mathcal{H}_{\alpha}$。\\
 设$\rho$和$\tau$是两个满足$0\leq \rho(\omega)\leq \tau(\omega)\leq T，a.s.$的停时。则对于$\boldsymbol{\alpha}=\left(j_{1}, j_{2}, \dots, j_{l}\right)$递归定义多重积分
@@ -117,4 +117,37 @@ f(\tau) & : \quad l=0 \\
 \end{array}\right.
 \end{equation}
 $\mathcal{H}_{\alpha}$的元素应满足$I_{\alpha-}[f(\cdot)]_{\rho,} \in \mathcal{H}_{\left(j_{l}\right)}$
+\subsection{多重积分之间的关系}
+记号：令$I_{\alpha,t}=I_{\alpha}[1]_{0,t}$,$W_t^0=t$,$I_A$表示示性函数。\\
+令$j_{1}, \ldots, j_{l} \in\{0,1, \ldots, m\}$， $\alpha=\left(j_{1}, \ldots, j_{l}\right) \in\mathcal{M}$,$l=1,2,3,...$则
+\begin{equation}
+\begin{aligned}
+W_{t}^{j} I_{\alpha, t}&=\sum_{i=0}^{l} I_{\left(j_{1}, \ldots, j_{i}, j, j_{i+1}, \ldots, j_{l}\right), t} \\
+&+\sum_{i=1}^{l} I_{\left\{j_{i}=j \neq 0\right\}} I_{\left(j_{1}, \ldots, j_{i-1}, 0, j_{i+1}, \ldots, j_{l}\right), t}
+\end{aligned}
+\end{equation}
+证明：对$I_{(j),t}I_{\alpha,t}$应用ito公式：
+\begin{equation}
+\begin{aligned}
+W_{t}^{j} I_{\alpha, t}=& I_{(j), t} I_{\alpha, t} \\
+=& \int_{0}^{t} I_{\alpha, s} d I_{(j), s}+\int_{0}^{t} I_{(j), s} I_{\alpha-, s} d W_{s}^{j_{l}} \\
+&+I_{\left\{j_{i}=j \neq 0\right\}} \int_{0}^{t} I_{\alpha-, s} d s &
+\end{aligned}
+\end{equation}
+当$l=1$时命题得证，对于$l>1$继续对$I_{(j),s}I_{\alpha-,s}$使用如上的展开。反复进行上述操作即可证明上述命题。\\
+设$\alpha=\left(j_{1}, \ldots, j_{l}\right)$,$j_1=...=j_l=j\in {0,...,m}$,$l\gqe 2$则
+\begin{equation}
+I_{\alpha, t}=\left\{\begin{array}{ll}
+\frac{1}{l!}t^{l} & : \quad j=0 \\
+\frac{1}{l}\left(W_{i}^{j} I_{\alpha-, t}-t I_{(\alpha-)-, t}\right): & j \geq 1
+\end{array}\right.
+\end{equation}
+证明$j=0$的情况就是普通的重积分，对于$j\in {1,...m}$
+\begin{equation}
+t I_{(\alpha-)-, t}=\sum_{i=0}^{l-2} I_{\left(j_{1}, \dots, j_{i}, 0, j_{i+1}, \dots, j_{l-2}\right), t}
+\end{equation}
+\begin{equation}
+W_{t}^{j} I_{\alpha-, t}=l I_{\alpha, t}+\sum_{i=1}^{l-1} I_{\left(j_{1}, \dots, j_{i-1}, 0, j_{i+1}, \dots, j_{l-1}\right), t}
+\end{equation}
+移项得证上述公式。
 \end{document}
