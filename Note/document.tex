@@ -1,6 +1,7 @@
 \documentclass{article}%book,report,letter
 \usepackage{ctex}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \graphicspath{{figures/}}
 
 \begin{document}
@@ -14,56 +15,25 @@
 		令Z是与$\mathcal{F}_{+\infty}$独立的随机变量，这里$\mathcal{F}_{+\infty}$是由$B_s(\cdot),s\geq0$，
 		且Z满足$E[|Z|^2]<\infty$则随机微分方程
 		\begin{equation}
-		dX_t=b(t,X_t)dt+\sigma(t,X_t)dB_t,   0\leq t\leq T,X_0=Z
-		\end{equation}
-		存在唯一连续解$X_t(\omega)$满足以下性质：\\
-		$X_t(\omega)$关于$\mathcal{F}^Z_t$是适应的而且
-		\begin{equation}
-		E\left[\int_{0}^{T}\left|X_{t}\right|^{2} d t\right]<\infty
-		\end{equation}
-		\subsection{唯一性}
-		这里的唯一性是指满足上述条件的连续解是唯一的，接下来用到$ito$等距公式，$C-S$不等式证明唯一性，不妨设$X_t(\omega)$是方程关于Z的解，$\widehat{X}_t(\omega)$是方程关于$\widehat{Z}$的解令$a(s, \omega)=b\left(s, X_{s}\right)-b\left(s, \hat{X}_{s}\right)$ $\gamma(s, \omega)=\sigma\left(s, X_{s}\right)-\sigma\left(s, \widehat{X}_{s}\right)$则
-		\begin{equation}
-		\begin{array}{l}
-		E\left[\left|X_{t}-\widehat{X}_{t}\right|^{2}\right]=E\left[\left(Z-\widehat{Z}+\int_{0}^{t} \operatorname{ads}+\int_{0}^{t} \gamma d B_{s}\right)^{2}\right] \\
-		\quad \leq 3 E\left[|Z-\widehat{Z}|^{2}\right]+3 E\left[\left(\int_{0}^{t} \text { ads }\right)^{2}\right]+3 E\left[\left(\int_{0}^{t} \gamma d B_{s}\right)^{2}\right] \\
-		\quad \leq 3 E\left[|Z-\widehat{Z}|^{2}\right]+3 t E\left[\int_{0}^{t} a^{2} d s\right]+3 E\left[\int_{0}^{t} \gamma^{2} d s\right] \\
-		\quad \leq 3 E\left[|Z-\widehat{Z}|^{2}\right]+3(1+t) D^{2} \int_{0}^{t} E\left[\left|X_{s}-\hat{X}_{s}\right|^{2}\right] d s
-		\end{array}
-		\end{equation}
-		令
-		$$
-		v(t)=E\left[\left|X_{t}-\hat{X}_{t}\right|^{2}\right] ; \quad 0 \leq t \leq T
-		$$
-		则上式满足
-		\begin{equation}
-		\begin{aligned}
-		v(t) & \leq F+A \int_{0}^{t} v(s) d s \\
-		&  F=3 E\left[|Z-\widehat{Z}|^{2}\right] ,A=3(1+T) D^{2}
-		\end{aligned}
-		\end{equation}
-		根据Gronwall不等式得
-		$v(t)\leq exp(At)$
-		现在假设$Z=\widehat{Z}$则F=0所以$v(t)=0$所以
-		$$
-		P\left[\left|X_{t}-\hat{X}_{t}\right|=0 \quad \text { for all } t \in \mathbf{Q} \cap[0, T]\right]=1
-		$$
-		由$|X_t-\widehat{X}|$的连续性知，sde的解是唯一的
-		\subsection{存在性}
-		利用不动点定理证明设$\Phi:(M^2)^d\rightarrow(M^2)^d$
-		$$\forall U\in (M^2)^d,\Phi(U)_t=X+\int_{0}^{t}f(s,U_s)ds+\int_{0}^{t}g(s,U_s)dB_s$$
-		由(1)(2)知$\Phi(U)\in (M^2)^d$，定义范数$\|U\|_{\beta}=\left(E \int_{0}^{T} e^{-\beta t}\left|X_{t}\right|^{2} d t\right)^{1 / 2}$显然它与$(M^2)^d$的原范数等价下证存在$\beta$
-		使得$\Phi$为严格压缩映射，设$U,U'\in(M^2)^d$记
-		$$
-		\bar{U}=U-U^{\prime}, \bar{f}_{t}=f\left(t, U_{t}\right)-f\left(t, U_{t}^{\prime}\right), \bar{g}_{t}=g\left(t, U_{t}\right)-g\left(t, U_{t}^{\prime}\right), \bar{\Phi}_{t}=\Phi(U)_{t}-\Phi\left(U^{\prime}\right)_{t}
-		$$
-		对$\forall \beta \in \mathbb{R}$，对$e^{-\beta t}$|\bar{\Phi_T}|^2$在$[0,T]$上利用ito公式得
+dX_t=b(t,X_t)dt+\sigma(t,X_t)dB_t,   0\leq t\leq T,X_0=Z
+\end{equation}
+存在唯一解
+$X_t(\omega)\in(M^2)^d$
+\subsection{证明}
+利用不动点定理证明设$\Phi:(M^2)^d\rightarrow(M^2)^d$
+$$\forall U\in (M^2)^d,\Phi(U)_t=X+\int_{0}^{t}f(s,U_s)ds+\int_{0}^{t}g(s,U_s)dB_s$$
+由(1)(2)知$\Phi(U)\in (M^2)^d$，定义范数$\|U\|_{\beta}=\left(E \int_{0}^{T} e^{-\beta t}\left|X_{t}\right|^{2} d t\right)^{1 / 2}$显然它与$(M^2)^d$的原范数等价下证存在$\beta$
+使得$\Phi$为严格压缩映射，设$U,U'\in(M^2)^d$记
 $$
+\bar{U}=U-U^{\prime}, \bar{f}_{t}=f\left(t, U_{t}\right)-f\left(t, U_{t}^{\prime}\right), \bar{g}_{t}=g\left(t, U_{t}\right)-g\left(t, U_{t}^{\prime}\right), \bar{\Phi}_{t}=\Phi(U)_{t}-\Phi\left(U^{\prime}\right)_{t}
+$$
+对$\forall \beta \in \mathbb{R}$，对$e^{-\beta t}$|\bar{\Phi_T}|^2$在$[0,T]$上利用ito公式得	
 \begin{equation}
-& e^{-\beta T}\left|\bar{\Phi}_{T}\right|^{2}+\beta \int_{0}^{T} e^{-\beta t}\left|\bar{\Phi}_{t}\right|^{2} d t \\
-=& 2 \int_{0}^{T} e^{-\beta t}\left\langle\bar{\Phi}_{t}, \bar{f}_{t}\right\rangle d t+2 \int_{0}^{T} e^{-\beta t}\left\langle\bar{\Phi}_{t}, \bar{g}_{t} d B_{t}\right\rangle+\int_{0}^{T} e^{-\beta t} \operatorname{Tr}\left[\bar{g}_{t} \bar{g}_{t}^{*}\right] d t
-\end{eqyation}
-$$
+\begin{align*}
+&e^{-\beta T}\left|\bar{\Phi}_{T}\right|^{2}+\beta \int_{0}^{T} e^{-\beta t}\left|\bar{\Phi}_{t}\right|^{2} d t \\
+&=2 \int_{0}^{T} e^{-\beta t}\left\langle\bar{\Phi}_{t}, \bar{f}_{t}\right\rangle d t+2 \int_{0}^{T} e^{-\beta t}\left\langle\bar{\Phi}_{t}, \bar{g}_{t} d B_{t}\right\rangle+\int_{0}^{T} e^{-\beta t} \operatorname{Tr}\left[\bar{g}_{t} \bar{g}_{t}^{*}\right] d t
+\end{align*}
+\end{equation}	
 对上式两边取期望
 $$
 \beta E \int_{0}^{T} e^{-\beta t}\left|\bar{\Phi}_{t}\right|^{2} d t \leqslant 2 E \int_{0}^{T} e^{-\beta t}\left\langle\bar{\Phi}_{t}, \bar{f}_{t}\right\rangle d t+E \int_{0}^{T} e^{-\beta t} \operatorname{Tr}\left[\bar{g}_{t} \bar{g}_{t}^{*}\right] d t
@@ -77,9 +47,74 @@ $$
 E \int_{0}^{T} e^{-\beta t}\left|\bar{\Phi}_{t}\right|^{2} d t \leqslant \frac{1}{2} E \int_{0}^{T} e^{-\beta t}\left|\bar{U}_{t}\right|^{2} d t
 $$
 这样即证$\Phi$为严格的压缩映射
-		
-	
-	
-
-
+\section{ito-Talor展开}
+\subsection{引入多重积分}
+考虑一维sde
+\begin{equation}
+X_{t}=X_{t_{0}}+\int_{t_{0}}^{t} a\left(X_{s}\right) d s+\int_{t_{0}}^{t} b\left(X_{s}\right) d W
+\end{equation}
+这里$t\in[t_0,T]$a，b足够光滑且满足有界线性增长，则对任意二阶连续可微函数由ito公式可得
+\begin{equation}
+\begin{aligned}
+f\left(X_{t}\right)=& f\left(X_{t_{0}}\right) \\
+&+\int_{t_{0}}^{t}\left(a\left(X_{s}\right) \frac{\partial}{\partial x} f\left(X_{s}\right)+\frac{1}{2} b^{2}\left(X_{s}\right) \frac{\partial^{2}}{\partial x^{2}} f\left(X_{s}\right)\right) d s \\
+&+\int_{t_{0}}^{t} b\left(X_{s}\right) \frac{\partial}{\partial x} f\left(X_{s}\right) d W_{s} \\
+=& f\left(X_{t_{0}}\right)+\int_{t_{0}}^{t} L^{0} f\left(X_{s}\right) d s+\int_{t_{0}}^{t} L^{1} f\left(X_{s}\right) d W_{s}
+\end{aligned}
+\end{equation}
+这里$L^0$和$L^1$分别表示
+\begin{equation}
+L^{0}=a \frac{\partial}{\partial x}+\frac{1}{2} b^{2} \frac{\partial^{2}}{\partial x^{2}}
+\end{equation}
+\begin{equation}
+L^{1}=b \frac{\partial}{\partial x}
+\end{equation}
+下面令$f=X_t$，且对a和b继续使用ito公式可得
+\begin{equation}
+\begin{aligned}
+X_{t}=& X_{t_{0}} \\
+&+\int_{t_{0}}^{t}\left(a\left(X_{t_{0}}\right)+\int_{t_{0}}^{s} L^{0} a\left(X_{z}\right) d z+\int_{t_{0}}^{s} L^{1} a\left(X_{z}\right) d W_{z}\right) d s \\
+&+\int_{t_{0}}^{t}\left(b\left(X_{t_{0}}\right)+\int_{t_{0}}^{s} L^{0} b\left(X_{z}\right) d z+\int_{t_{0}}^{s} L^{1} b\left(X_{z}\right) d W_{z}\right) d W \\
+=& X_{t_{0}}+a\left(X_{t_{0}}\right) \int_{t_{0}}^{t} d s+b\left(X_{t_{0}}\right) \int_{t_{0}}^{t} d W_{s}+R
+\end{aligned}
+\end{equation}
+这里R表示
+$$
+\begin{aligned}
+R=& \int_{t_{0}}^{t} \int_{t_{0}}^{s} L^{0} a\left(X_{z}\right) d z d s+\int_{t_{0}}^{t} \int_{t_{0}}^{s} L^{1} a\left(X_{z}\right) d W_{z} d s \\
+&+\int_{t_{0}}^{t} \int_{t_{0}}^{s} L^{0} b\left(X_{z}\right) d z d W_{s}+\int_{t_{0}}^{t} \int_{t_{0}}^{s} L^{1} b\left(X_{z}\right) d W_{z} d W_{s}
+\end{aligned}
+$$
+也可以对$L^0a,L^1a,L^0b,L^1b$继续使用ito公式，这就是最简单的$Ito-Taylor$展开。从上可知我们需要处理一个多重积分。
+\section{多重积分}
+\subsection{Multi-indices}
+称行向量
+$$
+\boldsymbol{\alpha}=\left(j_{1}, j_{2}, \dots, j_{l}\right)
+$$
+其中$$
+j_{i} \in\{0,1, \ldots, m\}
+$$
+为multi-indices，m表示Brown运动的m个分量$j_i$用于表示积分顺序$L^{j_i}$算子的作用顺序。$v$表示长度为0的multi-indices。
+\subsection{积分定义}
+以下$f$均为右连续适应的随机过程。令$\mathcal{H}_v$表示满足如下性质的$f$全体
+$$|f(t,\omega)|<\infty, w.p.1,for each t\geq 0$$
+类似的$\mathcal{H}_0$表示满足如下性质的$f$全体
+$$
+\int_{0}^{t}|f(s, \omega)| d s<\infty,w.p.1,for each t\geq 0
+$$
+$\mathcal{H}_1$表示满足如下性质的函数全体
+$$
+\int_{0}^{t}|f(s, \omega)|^2 d s<\infty,w.p.1,for each t\geq 0
+$$
+对于$j\geq2$,$\mathcal{H}_j=\mathcal{H}_1$，接下来定义$\mathcal{H}_{\alpha}$。\\
+设$\rho$和$\tau$是两个满足$0\leq \rho(\omega)\leq \tau(\omega)\leq T，a.s.$的停时。则对于$\boldsymbol{\alpha}=\left(j_{1}, j_{2}, \dots, j_{l}\right)$递归定义多重积分
+\begin{equation}
+I_{\alpha}[f(\cdot)]_{\rho, \tau}:=\left\{\begin{array}{ll}
+f(\tau) & : \quad l=0 \\
+\int_{\rho}^{\tau} I_{\alpha-}[f(\cdot)]_{\rho, s} d s & : \quad l \geq 1 \text { and } j_{l}=0 \\
+\int_{\rho}^{\tau} I_{\alpha-}[f(\cdot)]_{\rho, s} d W_{s}^{j_{l}} & : l \geq 1 \text { and } j_{l} \geq 1
+\end{array}\right.
+\end{equation}
+$\mathcal{H}_{\alpha}$的元素应满足$I_{\alpha-}[f(\cdot)]_{\rho,} \in \mathcal{H}_{\left(j_{l}\right)}$
 \end{document}
