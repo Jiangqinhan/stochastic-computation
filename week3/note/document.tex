@@ -1,0 +1,36 @@
+\documentclass{article}%book,report,letter
+\usepackage{booktabs}
+\usepackage{ctex}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\graphicspath{{figures/}}
+\title{学习报告}
+\author{姜钦瀚}
+\newtheorem{definition}{\bf 定义}[section]
+\newtheorem{pro}{\bf 命题}[section]
+\newtheorem{thm}{\bf 定理}[section]
+\newtheorem{lemma}{\bf 引理}[section]
+\begin{document}
+	\maketitle
+\section{定义}
+\begin{definition}
+称格式$Y_\delta$在T处强收敛于X如果	
+\begin{equation}
+\lim _{\delta \downarrow 0} E\left(\left|X_{T}-Y^{\delta}(T)\right|\right)=0
+\end{equation}
+\end{definition}
+\begin{table}[htbp]
+	\centering
+	\caption{误差变化}
+	\begin{tabular}{ccccc}
+		\toprule  % 顶部线
+		1&2&3&4&5 \\ 
+		\midrule  % 中部线
+		4.26748204&1.481642574&0.45718003&0.13571932&0.03757269 \\
+		\bottomrule  % 底部线
+	\end{tabular}
+\end{table}
+
+\end{document}
