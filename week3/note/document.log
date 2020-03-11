@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500 64-bit) (preloaded format=xelatex 2018.2.8)  8 MAR 2020 18:43
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500 64-bit) (preloaded format=xelatex 2018.2.8)  11 MAR 2020 21:40
 entering extended mode
 **./document.tex
 (document.tex
@@ -1422,23 +1422,34 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 
 
 LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <10.53937> not available
-(Font)              size <10.95> substituted on input line 19.
+(Font)              size <10.95> substituted on input line 18.
 
 [1
 
-] (document.aux)
+]
+File: Figure_1.png Graphic file (type bmp)
+<Figure_1.png>
+
+Overfull \hbox (33.85199pt too wide) detected at line 73
+[][]
+ []
+
+[2]
+File: Figure_2.png Graphic file (type bmp)
+<Figure_2.png>
+ [3] [4] (document.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.41063pt have occurred.
 
  ) 
 Here is how much of TeX's memory you used:
- 20777 strings out of 427839
- 424810 string characters out of 3152539
- 462613 words of memory out of 3000000
- 24589 multiletter control sequences out of 15000+200000
- 535590 words of font info for 67 fonts, out of 3000000 for 9000
+ 20813 strings out of 427839
+ 426420 string characters out of 3152539
+ 468613 words of memory out of 3000000
+ 24618 multiletter control sequences out of 15000+200000
+ 535606 words of font info for 69 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 57i,7n,68p,10437b,261s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 57i,10n,68p,10437b,261s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on document.pdf (1 page).
+Output written on document.pdf (4 pages).
